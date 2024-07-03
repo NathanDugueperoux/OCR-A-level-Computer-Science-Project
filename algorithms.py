@@ -10,12 +10,18 @@ def find_adjacent_enemy_territories(territory: object):
                     adjacent_enemy_territories.append(i)
     return adjacent_enemy_territories
 
+def attack_decision_making(enemy_territories: list):
+    pass
+
+
 red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
 blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
 
-enemy_territories = []
+attackable_enemy_territories = set([])
 
 for i in red_team:
-    enemy_territories.append(find_adjacent_enemy_territories(i))
-
-print(enemy_territories[0][0].get_info())
+    print(i)
+    temp = find_adjacent_enemy_territories(i)
+    for j in temp:
+        attackable_enemy_territories.add(j)
+        
