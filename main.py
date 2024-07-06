@@ -12,6 +12,8 @@ class Territories:
     def change_troops(self, amount):
         self.amount = amount
         self.amount_of_troops += self.amount
-    
 
+    def change_team(self, new_occupier):
+        self.new_occupier = new_occupier
+        self.occupier = self.new_occupier
 

@@ -13,7 +13,7 @@ existing_territories = [England, Denmark, Brazil, France, Austria, United_States
 red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
 blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
 
-# creates a dictionary with the key being home territory and the value being a list of territories the home territory can attack.
+# takes an object and returns creates a dictionary with the key being home territory and the value being a list of territories the home territory can attack.
 
 def find_adjacent_enemy_territories(territory: object):
     adjacent_enemy_territories = {}
@@ -25,6 +25,8 @@ def find_adjacent_enemy_territories(territory: object):
                     temp.append(i)
         adjacent_enemy_territories[territory.get_info()[1]] = temp
     return adjacent_enemy_territories
+
+# takes a list of attackable enemy nodes iterates through the attackable enemy list and
 
 def fortifying_decision_making(enemy_territories: list):
     priority = None
