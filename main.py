@@ -1,19 +1,29 @@
-class Territories:
-    
-    def __init__(self, occupier, territory_name, amount_of_troops, adjacent_territories):
-        self.occupier = occupier
-        self.territory_name = territory_name
-        self.amount_of_troops = amount_of_troops
-        self.adjacent_territories = adjacent_territories
+import pygame 
+import sys
 
-    def get_info(self):
-        return [self.occupier, self.territory_name, self.amount_of_troops, self.adjacent_territories]
+pygame.init()
 
-    def change_troops(self, amount):
-        self.amount = amount
-        self.amount_of_troops += self.amount
+pygame.display.set_caption("")
+window = pygame.display.set_mode((640, 480))
 
-    def change_team(self, new_occupier):
-        self.new_occupier = new_occupier
-        self.occupier = self.new_occupier
+england = pygame.Rect(150, 50, 100, 110)
+denmark = pygame.Rect(120, 150, 150, 100)
+brazil = pygame.Rect(150, 250, 100, 100)
+united_states = pygame.Rect(270, 150, 100, 100)
 
+clock = pygame.time.Clock()
+
+while True:
+    window.fill((0, 30, 250))
+
+    pygame.draw.rect(window, (200, 0, 0), england)
+    pygame.draw.rect(window, (200, 0, 0), denmark)
+    pygame.draw.rect(window, (200, 0, 0), brazil)
+    pygame.draw.rect(window, (200, 0, 0), united_states)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+    pygame.display.update()
+    clock.tick(60)

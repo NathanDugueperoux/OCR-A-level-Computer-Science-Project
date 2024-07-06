@@ -1,4 +1,4 @@
-from main import Territories
+from classes import Territories
 
 England = Territories("Red", "England", 5, ["Denmark", "United_States", "France"])
 Denmark = Territories("Red", "Denmark", 0, ["England", "United_States", "Brazil"])
