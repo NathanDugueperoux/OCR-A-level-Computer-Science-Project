@@ -1,17 +1,4 @@
-from classes import Territories
-
-England = Territories("Red", "England", 5, ["Denmark", "United_States", "France"])
-Denmark = Territories("Red", "Denmark", 0, ["England", "United_States", "Brazil"])
-Brazil = Territories("Red", "Brazil", 0, ["Denmark"])
-United_States = Territories("Red", "United_States", 0, ["Denmark", "England", "France", "Germany"])
-France = Territories("Blue", "France", 15, ["England", "United_States", "Germany"])
-Germany = Territories("Blue", "Germany", 1, ["France", "United_States", "Austria"])
-Austria = Territories("Blue", "Austria", 0, ["Germany"])
-
-existing_territories = [England, Denmark, Brazil, France, Austria, United_States, Germany]
-
-red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
-blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
+from initialization import existing_territories
 
 # takes an object and returns creates a dictionary with the key being home territory and the value being a list of territories the home territory can attack.
 
@@ -27,6 +14,8 @@ def find_adjacent_enemy_territories(territory: object):
     return adjacent_enemy_territories
 
 # takes a list of attackable enemy nodes iterates through the attackable enemy list and
+# problem 1: if function recturns none it causes issues
+# problem 2: this function doesnt work at all logically :(
 
 def fortifying_decision_making(enemy_territories: list):
     priority = None
@@ -48,6 +37,9 @@ def fortifying_decision_making(enemy_territories: list):
                     
 
 # iterates through the red team list and runs each item through find_adjacent_enemy_territories() putting resulting dictionary in the list attackable_enemy_territories.
+
+red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
+blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
 
 attackable_enemy_territories = []
 
