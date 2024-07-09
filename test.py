@@ -9,13 +9,16 @@ def find_adjacent_enemy_territories(territory: object):
         for j in existing_territories:
             if i == j.get_info()[1]:
                 if j.get_info()[0] != territory.get_info()[0]:
-                    temp.append(i)
-        adjacent_enemy_territories[territory.get_info()[1]] = temp
+                    temp.append(j)
+        adjacent_enemy_territories[territory] = temp
     return adjacent_enemy_territories
+
+
+# def find_adjacent_enemy_territories(territory = object):
+#     pass
 
 # takes a list of attackable enemy nodes iterates through the attackable enemy list and
 # problem 1: if function recturns none it causes issues
-# problem 2: this function doesnt work at all logically :(
 
 def fortifying_decision_making(enemy_territories: list):
     priority = None
@@ -23,17 +26,13 @@ def fortifying_decision_making(enemy_territories: list):
     total = 0
     for i in range(len(attackable_enemy_territories)):
         for key, value in attackable_enemy_territories[i].items():
-            for j in existing_territories:
-                if key == j.get_info()[1]:
-                    for k in value:
-                        for l in existing_territories:
-                            if k == l.get_info()[1]:
-                                total += l.get_info()[2]
-                    temp = difference
-                    difference = total - j.get_info()[2]
-                    total = 0
-                    if difference > temp:
-                        priority = j
+            for j in value:
+                total += j.get_info()[2]
+                temp = difference
+                difference = total - key.get_info()[2]
+            total = 0
+            if difference > temp:
+                priority = j
     return priority
                     
 
@@ -45,10 +44,10 @@ blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
 attackable_enemy_territories = []
 
 for i in red_team: 
-    if find_adjacent_enemy_territories(i)[i.get_info()[1]] == []:
-        pass
-    else:
-        attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
+        if find_adjacent_enemy_territories(i)[i] == []:
+            pass
+        else:
+            attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
 
 # test
 

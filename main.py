@@ -1,12 +1,11 @@
 import pygame 
 import sys
 from initialization import existing_territories
-from algorithms import find_adjacent_enemy_territories, fortifying_decision_making
+from test import find_adjacent_enemy_territories, fortifying_decision_making
 
 pygame.init()
 
 pygame.display.set_caption("")
-
 window = pygame.display.set_mode((780, 480))
 
 clock = pygame.time.Clock()
