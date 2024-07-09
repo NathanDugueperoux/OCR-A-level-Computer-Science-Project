@@ -34,6 +34,7 @@ def fortifying_decision_making(enemy_territories: list):
                     total = 0
                     if difference > temp:
                         priority = j
+                    # add condition if all nodes are stronger then enemy nodes
     return priority
                     
 
