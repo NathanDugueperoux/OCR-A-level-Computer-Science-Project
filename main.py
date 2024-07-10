@@ -1,7 +1,7 @@
 import pygame 
 import sys
 from initialization import existing_territories
-from test import find_adjacent_enemy_territories, fortifying_decision_making
+from algorithms import find_adjacent_enemy_territories, fortifying_decision_making
 
 pygame.init()
 
@@ -71,6 +71,7 @@ while True:
                     pass
                 else:
                     attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
+                    
             print(fortifying_decision_making(attackable_enemy_territories).get_info()[1])
             fortifying_decision_making(attackable_enemy_territories).change_troops(2)
     

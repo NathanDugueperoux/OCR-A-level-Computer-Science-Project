@@ -28,8 +28,8 @@ def fortifying_decision_making(enemy_territories: list):
         for key, value in attackable_enemy_territories[i].items():
             for j in value:
                 total += j.get_info()[2]
-                temp = difference
-                difference = total - key.get_info()[2]
+            temp = difference
+            difference = total - key.get_info()[2]
             total = 0
             if difference > temp:
                 priority = j

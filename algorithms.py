@@ -1,4 +1,5 @@
 from initialization import existing_territories
+import random
 
 # takes an object and returns creates a dictionary with the key being home territory and the value being a list of territories the home territory can attack.
 
@@ -34,7 +35,8 @@ def fortifying_decision_making(enemy_territories: list):
                     total = 0
                     if difference > temp:
                         priority = j
-                    # add condition if all nodes are stronger then enemy nodes
+                    
+                    
     return priority
                     
 
