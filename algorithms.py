@@ -15,7 +15,7 @@ def find_adjacent_enemy_territories(territory: object):
     return adjacent_enemy_territories
 
 # takes a list of attackable enemy nodes iterates through the attackable enemy list and
-# problem 1: if function recturns none it causes issues
+# problem 1: algorithm is quite defensive as it fortifies vulnerable territrories until as strong as oppostition but doesnt become stronger
 
 def fortifying_decision_making(enemy_territories: list, team: list):
     priority = None
@@ -26,7 +26,7 @@ def fortifying_decision_making(enemy_territories: list, team: list):
             for j in value:
                 total += j.get_info()[2]
             temp = difference
-            difference = total - key.get_info()[2]
+            difference = int(total/len(value)) - key.get_info()[2]
             total = 0
             if difference > temp:
                 priority = key
