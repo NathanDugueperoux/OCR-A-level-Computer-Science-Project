@@ -1,4 +1,5 @@
 from initialization import existing_territories
+import random
 
 # takes an object and returns creates a dictionary with the key being home territory and the value being a list of territories the home territory can attack.
 
@@ -16,12 +17,12 @@ def find_adjacent_enemy_territories(territory: object):
 # takes a list of attackable enemy nodes iterates through the attackable enemy list and
 # problem 1: if function recturns none it causes issues
 
-def fortifying_decision_making(enemy_territories: list):
+def fortifying_decision_making(enemy_territories: list, team: list):
     priority = None
     difference = 0
     total = 0
-    for i in range(len(attackable_enemy_territories)):
-        for key, value in attackable_enemy_territories[i].items():
+    for i in range(len(enemy_territories)):
+        for key, value in enemy_territories[i].items():
             for j in value:
                 total += j.get_info()[2]
             temp = difference
@@ -29,24 +30,7 @@ def fortifying_decision_making(enemy_territories: list):
             total = 0
             if difference > temp:
                 priority = key
+    if priority == None:
+        priority = team[random.randint(0, len(team)-1)]
     return priority
                     
-
-# iterates through the red team list and runs each item through find_adjacent_enemy_territories() putting resulting dictionary in the list attackable_enemy_territories.
-
-red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
-blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
-
-attackable_enemy_territories = []
-
-for i in red_team: 
-        if find_adjacent_enemy_territories(i)[i] == []:
-            pass
-        else:
-            attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
-
-# test
-
-print(attackable_enemy_territories)
-
-print(fortifying_decision_making(attackable_enemy_territories).get_info()[1])

@@ -59,22 +59,43 @@ while True:
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r:
 
-            given_troops = 6
+                given_troops = 6
 
-            red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
-            
-            attackable_enemy_territories = []
-            
-            for i in red_team: 
-                if find_adjacent_enemy_territories(i)[i] == []:
-                    pass
-                else:
-                    attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
-                    
-            print(fortifying_decision_making(attackable_enemy_territories).get_info()[1])
-            fortifying_decision_making(attackable_enemy_territories).change_troops(2)
-    
+                red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
+                blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
+                
+                attackable_enemy_territories = []
+                
+                for i in red_team: 
+                    if find_adjacent_enemy_territories(i)[i] == []:
+                        pass
+                    else:
+                        attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
+                        
+                print(fortifying_decision_making(attackable_enemy_territories, red_team).get_info()[1])
+                fortifying_decision_making(attackable_enemy_territories, red_team).change_troops(2)
+
+            if event.key == pygame.K_b:
+
+                given_troops = 6
+
+                red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
+                blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
+                
+                attackable_enemy_territories = []
+                
+                for i in blue_team: 
+                    if find_adjacent_enemy_territories(i)[i] == []:
+                        pass
+                    else:
+                        attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
+                        
+                print(fortifying_decision_making(attackable_enemy_territories, blue_team).get_info()[1])
+                fortifying_decision_making(attackable_enemy_territories, blue_team).change_troops(2)
+
+        
     pygame.display.update()
     clock.tick(60)
 
