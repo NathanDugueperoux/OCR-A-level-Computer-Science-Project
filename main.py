@@ -67,7 +67,7 @@ while True:
             attackable_enemy_territories = []
             
             for i in red_team: 
-                if find_adjacent_enemy_territories(i)[i.get_info()[1]] == []:
+                if find_adjacent_enemy_territories(i)[i] == []:
                     pass
                 else:
                     attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
