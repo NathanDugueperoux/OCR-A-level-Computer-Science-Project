@@ -1,6 +1,6 @@
 class Territories:
     
-    def __init__(self, occupier, territory_name, amount_of_troops, adjacent_territories):
+    def __init__(self, occupier, territory_name, amount_of_troops, adjacent_territories, vulnerability_index, attack_potential_index):
         # Name of territry
         self.occupier = occupier
         self.territory_name = territory_name
@@ -9,9 +9,6 @@ class Territories:
 
     def get_name(self):
         return self.territory_name
-
-    def get_info(self):
-        return [self.occupier, self.territory_name, self.amount_of_troops, self.adjacent_territories]
 
     def change_troops(self, amount):
         self.amount = amount

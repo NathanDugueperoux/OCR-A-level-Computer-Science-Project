@@ -20,17 +20,15 @@ france = pygame.Rect(290, 50, 150, 100)
 germany = pygame.Rect(410, 150, 100, 100)
 austria = pygame.Rect(510, 150, 100, 130)
 
-
-
 while True:
 
-    england_troops = font.render(str(existing_territories[0].get_info()[2]), True, "White")
-    denmark_troops = font.render(str(existing_territories[1].get_info()[2]), True, "White")
-    brazil_troops = font.render(str(existing_territories[2].get_info()[2]), True, "White")
-    united_states_troops = font.render(str(existing_territories[5].get_info()[2]), True, "White")
-    france_troops = font.render(str(existing_territories[3].get_info()[2]), True, "White")
-    germany_troops = font.render(str(existing_territories[6].get_info()[2]), True, "White")
-    austria_troops = font.render(str(existing_territories[4].get_info()[2]), True, "White")
+    england_troops = font.render(str(existing_territories[0].amount_of_troops), True, "White")
+    denmark_troops = font.render(str(existing_territories[1].amount_of_troops), True, "White")
+    brazil_troops = font.render(str(existing_territories[2].amount_of_troops), True, "White")
+    united_states_troops = font.render(str(existing_territories[5].amount_of_troops), True, "White")
+    france_troops = font.render(str(existing_territories[3].amount_of_troops), True, "White")
+    germany_troops = font.render(str(existing_territories[6].amount_of_troops), True, "White")
+    austria_troops = font.render(str(existing_territories[4].amount_of_troops), True, "White")
 
     red_territories = [[england, england_troops], [denmark, denmark_troops], [brazil, brazil_troops], [united_states, united_states_troops]]
     blue_territories = [[france, france_troops], [germany, germany_troops], [austria, austria_troops]]
@@ -63,39 +61,37 @@ while True:
 
                 given_troops = 6
 
-                red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
-                blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
+                red_team = [i for i in existing_territories if i.occupier == "Red"] # creates a list of red teams territories
+                blue_team = [i for i in existing_territories if i.occupier == "Blue"] # creates a list of blue teams territories
                 
                 attackable_enemy_territories = []
                 
                 for i in red_team: 
-                    if find_adjacent_enemy_territories(i)[i] == []:
+                    if find_adjacent_enemy_territories(i)[i] == []: # checks if a territory has no enemy territories
                         pass
                     else:
                         attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
                         
-                print(fortifying_decision_making(attackable_enemy_territories, red_team).get_info()[1])
-                fortifying_decision_making(attackable_enemy_territories, red_team).change_troops(2)
+                fortifying_decision_making(attackable_enemy_territories, red_team).change_troops(1)
 
             if event.key == pygame.K_b:
 
                 given_troops = 6
 
-                red_team = [i for i in existing_territories if i.get_info()[0] == "Red"]
-                blue_team = [i for i in existing_territories if i.get_info()[0] == "Blue"]
+                red_team = [i for i in existing_territories if i.occupier == "Red"] # creates a list of red teams territories
+                blue_team = [i for i in existing_territories if i.occupier == "Blue"] # creates a list of blue teams territories
                 
-                attackable_enemy_territories = []
+                attackable_enemy_territories = [] 
                 
                 for i in blue_team: 
-                    if find_adjacent_enemy_territories(i)[i] == []:
+                    if find_adjacent_enemy_territories(i)[i] == []: # checks if a territory has no enemy territories
                         pass
                     else:
                         attackable_enemy_territories.append(find_adjacent_enemy_territories(i))
-                        
-                print(fortifying_decision_making(attackable_enemy_territories, blue_team).get_info()[1])
-                fortifying_decision_making(attackable_enemy_territories, blue_team).change_troops(2)
+
+                
+                fortifying_decision_making(attackable_enemy_territories, blue_team).change_troops(1)
 
         
     pygame.display.update()
     clock.tick(60)
-

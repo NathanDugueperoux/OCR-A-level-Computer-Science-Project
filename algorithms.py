@@ -1,36 +1,27 @@
 from initialization import existing_territories
 import random
 
-# takes an object and returns creates a dictionary with the key being home territory and the value being a list of territories the home territory can attack.
+# takes an object and returns a dictionary with the key being the territory and the value being a list of territories the territory can attack.
 
-def find_adjacent_enemy_territories(territory: object):
-    adjacent_enemy_territories = {}
-    temp = []
-    for i in territory.get_info()[3]:
-        for j in existing_territories:
-            if i == j.get_info()[1]:
-                if j.get_info()[0] != territory.get_info()[0]:
-                    temp.append(j)
-        adjacent_enemy_territories[territory] = temp
+def find_adjacent_enemy_territories(territory: object): 
+    adjacent_enemy_territories = {} 
+    value = [] 
+    for i in territory.adjacent_territories: # iterates through the names of adjacent territories of the object    
+        for j in existing_territories: # iterates through list of all territories
+            if i == j.territory_name: # checks if the names match to find the actual object needed 
+                if j.occupier != territory.occupier: # checks if the territories are on different teams
+                    value.append(j) # appends enemy territory
+        adjacent_enemy_territories[territory] = value # adds the key and value to dictionary
     return adjacent_enemy_territories
 
-# takes a list of attackable enemy nodes iterates through the attackable enemy list and
-# problem 1: algorithm is quite defensive as it fortifies vulnerable territrories until as strong as oppostition but doesnt become stronger
+# takes a list of attackable enemy nodes and iterates through the attackable enemy list
+#  
+def calculate_vulnerability_index():
+    pass
+
+def calculate_attack_potential_index():
+    pass
 
 def fortifying_decision_making(enemy_territories: list, team: list):
-    priority = None
-    difference = 0
-    total = 0
-    for i in range(len(enemy_territories)):
-        for key, value in enemy_territories[i].items():
-            for j in value:
-                total += j.get_info()[2]
-            temp = difference
-            difference = int(total/len(value)) - key.get_info()[2]
-            total = 0
-            if difference > temp:
-                priority = key
-    if priority == None:
-        priority = team[random.randint(0, len(team)-1)]
-    return priority
+    pass
                     
