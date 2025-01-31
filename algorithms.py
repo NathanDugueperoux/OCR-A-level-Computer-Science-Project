@@ -34,3 +34,5 @@ def fortifying_decision_making(enemy_territories: list, team: list):
 
 for i in existing_territories:
     print(calculate_vulnerability_index(i))
+
+print("")
